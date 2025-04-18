@@ -1,9 +1,9 @@
 package dev.patriciafb.spring.student;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import dev.patriciafb.spring.academy.Academy;
+import dev.patriciafb.spring.teacher.Teacher;
+import dev.patriciafb.spring.group.Group;
+import jakarta.persistence.*;
 
 @Entity
 public class Student {
@@ -14,36 +14,52 @@ public class Student {
 
     private String name;
     private String surname;
-    private String groupName;
-    private String attendance;
-    private String teacher;
-    private String academy;
+    
+    @Enumerated(EnumType.STRING)
+    private EnglishLevel level;
+
+    private boolean hasAttendanceIssues;
+
+    @ManyToOne
+    @JoinColumn(name = "academy_id")
+    private Academy academy;
+
+    @ManyToOne
+    @JoinColumn(name = "teacher_id")
+    private Teacher teacher;
+
+    @ManyToOne
+    @JoinColumn(name = "group_id")
+    private Group group;
 
     public Student() {}
 
-    public Student(Long id, String name, String surname, String groupName, String attendance, String teacher, String academy) {
+    public Student(Long id, String name, String surname, EnglishLevel level, boolean hasAttendanceIssues, Academy academy, Teacher teacher, Group group) {
         this.id = id;
         this.name = name;
         this.surname = surname;
-        this.groupName = groupName;
-        this.attendance = attendance;
-        this.teacher = teacher;
+        this.level = level;
+        this.hasAttendanceIssues = hasAttendanceIssues;
         this.academy = academy;
+        this.teacher = teacher;
+        this.group = group;
     }
 
     public Long getId() { return id; }
     public String getName() { return name; }
     public String getSurname() { return surname; }
-    public String getGroupName() { return groupName; }
-    public String getAttendance() { return attendance; }
-    public String getTeacher() { return teacher; }
-    public String getAcademy() { return academy; }
+    public EnglishLevel getLevel() { return level; }
+    public boolean isHasAttendanceIssues() { return hasAttendanceIssues; }
+    public Academy getAcademy() { return academy; }
+    public Teacher getTeacher() { return teacher; }
+    public Group getGroup() { return group; }
 
     public void setId(Long id) { this.id = id; }
     public void setName(String name) { this.name = name; }
     public void setSurname(String surname) { this.surname = surname; }
-    public void setGroupName(String groupName) { this.groupName = groupName; }
-    public void setAttendance(String attendance) { this.attendance = attendance; }
-    public void setTeacher(String teacher) { this.teacher = teacher; }
-    public void setAcademy(String academy) { this.academy = academy; }
+    public void setLevel(EnglishLevel level) { this.level = level; }
+    public void setHasAttendanceIssues(boolean hasAttendanceIssues) { this.hasAttendanceIssues = hasAttendanceIssues; }
+    public void setAcademy(Academy academy) { this.academy = academy; }
+    public void setTeacher(Teacher teacher) { this.teacher = teacher; }
+    public void setGroup(Group group) { this.group = group; }
 }

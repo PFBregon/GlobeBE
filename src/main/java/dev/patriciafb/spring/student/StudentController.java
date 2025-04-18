@@ -12,15 +12,13 @@ import java.util.stream.Collectors;
 @CrossOrigin(origins = "*")
 public class StudentController {
 
-    private final StudentService service;
-
-    @Autowired
-    public StudentController(StudentService service) {
-        this.service = service;
-    }
+    @Autowired private StudentService service;
+    @Autowired private AcademyRepository academyRepo;
+    @Autowired private TeacherRepository teacherRepo;
+    @Autowired private GroupRepository groupRepo;
 
     @GetMapping
-    public List<StudentDto> getAllStudents() {
+    public List<StudentDto> getAll() {
         return service.getAllStudents()
                 .stream()
                 .map(StudentMapper::toDTO)
@@ -28,26 +26,41 @@ public class StudentController {
     }
 
     @GetMapping("/{id}")
-    public StudentDto getStudent(@PathVariable Long id) {
+    public StudentDto getById(@PathVariable Long id) {
         return service.getStudentById(id)
                 .map(StudentMapper::toDTO)
                 .orElse(null);
     }
 
     @PostMapping
-    public StudentDto createStudent(@RequestBody StudentDto dto) {
-        Student saved = service.saveStudent(StudentMapper.toEntity(dto));
-        return StudentMapper.toDTO(saved);
+    public StudentDto create(@RequestBody StudentDto dto) {
+        Student student = dtoToEntity(dto);
+        return StudentMapper.toDTO(service.saveStudent(student));
     }
 
     @PutMapping("/{id}")
-    public StudentDto updateStudent(@PathVariable Long id, @RequestBody StudentDto dto) {
-        Student updated = service.updateStudent(id, StudentMapper.toEntity(dto));
-        return StudentMapper.toDTO(updated);
+    public StudentDto update(@PathVariable Long id, @RequestBody StudentDto dto) {
+        Student updated = dtoToEntity(dto);
+        return StudentMapper.toDTO(service.updateStudent(id, updated));
     }
 
     @DeleteMapping("/{id}")
-    public void deleteStudent(@PathVariable Long id) {
+    public void delete(@PathVariable Long id) {
         service.deleteStudent(id);
+    }
+
+    private Student dtoToEntity(StudentDto dto) {
+        Student student = new Student();
+        student.setId(dto.getId());
+        student.setName(dto.getName());
+        student.setSurname(dto.getSurname());
+        student.setLevel(EnglishLevel.valueOf(dto.getLevel()));
+        student.setHasAttendanceIssues(dto.isHasAttendanceIssues());
+
+        student.setAcademy(dto.getAcademyId() != null ? academyRepo.findById(dto.getAcademyId()).orElse(null) : null);
+        student.setTeacher(dto.getTeacherId() != null ? teacherRepo.findById(dto.getTeacherId()).orElse(null) : null);
+        student.setGroup(dto.getGroupId() != null ? groupRepo.findById(dto.getGroupId()).orElse(null) : null);
+
+        return student;
     }
 }

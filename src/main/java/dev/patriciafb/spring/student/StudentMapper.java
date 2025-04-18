@@ -1,6 +1,5 @@
 package dev.patriciafb.spring.student;
 
-
 public class StudentMapper {
 
     public static StudentDto toDTO(Student student) {
@@ -8,22 +7,12 @@ public class StudentMapper {
                 student.getId(),
                 student.getName(),
                 student.getSurname(),
-                student.getGroupName(),
-                student.getAttendance(),
-                student.getTeacher(),
-                student.getAcademy()
-        );
-    }
-
-    public static Student toEntity(StudentDto dto) {
-        return new Student(
-                dto.getId(),
-                dto.getName(),
-                dto.getSurname(),
-                dto.getGroupName(),
-                dto.getAttendance(),
-                dto.getTeacher(),
-                dto.getAcademy()
+                student.getLevel().name(),
+                student.isHasAttendanceIssues(),
+                student.getAcademy() != null ? student.getAcademy().getId() : null,
+                student.getTeacher() != null ? student.getTeacher().getId() : null,
+                student.getGroup() != null ? student.getGroup().getId() : null
         );
     }
 }
+

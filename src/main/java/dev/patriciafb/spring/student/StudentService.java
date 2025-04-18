@@ -1,20 +1,13 @@
 package dev.patriciafb.spring.student;
 
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
 import java.util.Optional;
 
 @Service
 public class StudentService {
-    private final StudentRepository repository;
-
-    @Autowired
-    public StudentService(StudentRepository repository) {
-        this.repository = repository;
-    }
+    @Autowired private StudentRepository repository;
 
     public List<Student> getAllStudents() {
         return repository.findAll();
@@ -28,14 +21,15 @@ public class StudentService {
         return repository.save(student);
     }
 
-    public Student updateStudent(Long id, Student updatedStudent) {
+    public Student updateStudent(Long id, Student updated) {
         return repository.findById(id).map(student -> {
-            student.setName(updatedStudent.getName());
-            student.setSurname(updatedStudent.getSurname());
-            student.setGroupName(updatedStudent.getGroupName());
-            student.setAttendance(updatedStudent.getAttendance());
-            student.setTeacher(updatedStudent.getTeacher());
-            student.setAcademy(updatedStudent.getAcademy());
+            student.setName(updated.getName());
+            student.setSurname(updated.getSurname());
+            student.setLevel(updated.getLevel());
+            student.setHasAttendanceIssues(updated.isHasAttendanceIssues());
+            student.setAcademy(updated.getAcademy());
+            student.setTeacher(updated.getTeacher());
+            student.setGroup(updated.getGroup());
             return repository.save(student);
         }).orElse(null);
     }

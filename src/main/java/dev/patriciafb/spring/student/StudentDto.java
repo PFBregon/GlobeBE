@@ -5,37 +5,44 @@ public class StudentDto {
     private Long id;
     private String name;
     private String surname;
-    private String groupName;
-    private String attendance;
-    private String teacher;
-    private String academy;
+    private String level; 
+    private boolean hasAttendanceIssues;
+
+    private Long academyId;
+    private Long teacherId;
+    private Long groupId;
 
     public StudentDto() {}
 
-    public StudentDto(Long id, String name, String surname, String groupName, String attendance, String teacher, String academy) {
-        this.id = id;
-        this.name = name;
-        this.surname = surname;
-        this.groupName = groupName;
-        this.attendance = attendance;
-        this.teacher = teacher;
-        this.academy = academy;
+    public StudentDto(Long id, String name, String surname, String level, boolean hasAttendanceIssues,
+    Long academyId, Long teacherId, Long groupId) {
+    this.id = id;
+    this.name = name;
+    this.surname = surname;
+    this.level = level;
+    this.hasAttendanceIssues = hasAttendanceIssues;
+    this.academyId = academyId;
+    this.teacherId = teacherId;
+    this.groupId = groupId;
     }
 
     public Long getId() { return id; }
     public String getName() { return name; }
     public String getSurname() { return surname; }
-    public String getGroupName() { return groupName; }
-    public String getAttendance() { return attendance; }
-    public String getTeacher() { return teacher; }
-    public String getAcademy() { return academy; }
+    public String getLevel() { return level; }
+    public boolean isHasAttendanceIssues() { return hasAttendanceIssues; }
+    public Long getAcademyId() { return academyId; }
+    public Long getTeacherId() { return teacherId; }
+    public Long getGroupId() { return groupId; }
 
 
     public void setId(Long id) { this.id = id; }
     public void setName(String name) { this.name = name; }
     public void setSurname(String surname) { this.surname = surname; }
-    public void setGroupName(String groupName) { this.groupName = groupName; }
-    public void setAttendance(String attendance) { this.attendance = attendance; }
-    public void setTeacher(String teacher) { this.teacher = teacher; }
-    public void setAcademy(String academy) { this.academy = academy; }
+    public void setLevel(String level) { this.level = level; }
+    public void setHasAttendanceIssues(boolean hasAttendanceIssues) { this.hasAttendanceIssues = hasAttendanceIssues; }
+    public void setAcademyId(Long academyId) { this.academyId = academyId; }
+    public void setTeacherId(Long teacherId) { this.teacherId = teacherId; }
+    public void setGroupId(Long groupId) { this.groupId = groupId;
+}
 }
