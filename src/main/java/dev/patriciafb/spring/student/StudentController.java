@@ -58,7 +58,16 @@ public class StudentController {
         student.setId(dto.getId());
         student.setName(dto.getName());
         student.setSurname(dto.getSurname());
-        student.setLevel(EnglishLevel.valueOf(dto.getLevel()));
+        if (dto.getLevel() == null || dto.getLevel().isBlank()) {
+            throw new IllegalArgumentException("El campo 'level' no puede estar vacío");
+        }
+        
+        try {
+            student.setLevel(EnglishLevel.valueOf(dto.getLevel().toUpperCase()));
+        } catch (IllegalArgumentException e) {
+            throw new IllegalArgumentException("El valor '" + dto.getLevel() + "' no es un nivel válido. Usa: A1, A2, B1, B2, C1, C2.");
+        }
+        
         student.setHasAttendanceIssues(dto.isHasAttendanceIssues());
 
         student.setAcademy(dto.getAcademyId() != null ? academyRepo.findById(dto.getAcademyId()).orElse(null) : null);

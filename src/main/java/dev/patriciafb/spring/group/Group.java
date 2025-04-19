@@ -3,6 +3,7 @@ package dev.patriciafb.spring.group;
 import jakarta.persistence.*;
 
 @Entity
+@Table(name = "groups") 
 public class Group {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
