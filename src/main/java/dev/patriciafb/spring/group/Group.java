@@ -1,11 +1,8 @@
 package dev.patriciafb.spring.group;
 
 import jakarta.persistence.*;
-import java.util.List; 
-import dev.patriciafb.spring.student.Student;
 
 @Entity
-@Table(name = "groups") 
 public class Group {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -13,9 +10,6 @@ public class Group {
 
     private String name;
     private String schedule;
-
-    @OneToMany(mappedBy = "group")
-    private List<Student> students;
 
     public Group() {}
 

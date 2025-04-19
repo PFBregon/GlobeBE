@@ -1,8 +1,8 @@
-package dev.patriciafb.spring.academy;
+package dev.patriciafb.spring.teacher;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface AcademyRepository extends JpaRepository<Academy, Long> {
+public interface TeacherRepository extends JpaRepository<Teacher, Long> {
 }

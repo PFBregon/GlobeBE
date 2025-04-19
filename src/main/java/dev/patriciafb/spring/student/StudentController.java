@@ -4,6 +4,10 @@ package dev.patriciafb.spring.student;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import dev.patriciafb.spring.academy.AcademyRepository;
+import dev.patriciafb.spring.group.GroupRepository;
+import dev.patriciafb.spring.teacher.TeacherRepository;
+
 import java.util.List;
 import java.util.stream.Collectors;
 
