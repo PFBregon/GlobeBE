@@ -3,6 +3,7 @@
 /Users/patricia/Desktop/GLOBE/BE/src/main/java/dev/patriciafb/spring/academy/AcademyController.java
 /Users/patricia/Desktop/GLOBE/BE/src/main/java/dev/patriciafb/spring/academy/AcademyRepository.java
 /Users/patricia/Desktop/GLOBE/BE/src/main/java/dev/patriciafb/spring/academy/AcademyService.java
+/Users/patricia/Desktop/GLOBE/BE/src/main/java/dev/patriciafb/spring/config/CorsConfig.java
 /Users/patricia/Desktop/GLOBE/BE/src/main/java/dev/patriciafb/spring/group/Group.java
 /Users/patricia/Desktop/GLOBE/BE/src/main/java/dev/patriciafb/spring/group/GroupController.java
 /Users/patricia/Desktop/GLOBE/BE/src/main/java/dev/patriciafb/spring/group/GroupRepository.java
@@ -12,6 +13,7 @@
 /Users/patricia/Desktop/GLOBE/BE/src/main/java/dev/patriciafb/spring/notification/NotificationDTO.java
 /Users/patricia/Desktop/GLOBE/BE/src/main/java/dev/patriciafb/spring/notification/NotificationRepository.java
 /Users/patricia/Desktop/GLOBE/BE/src/main/java/dev/patriciafb/spring/notification/NotificationService.java
+/Users/patricia/Desktop/GLOBE/BE/src/main/java/dev/patriciafb/spring/seeder/DataSeeder.java
 /Users/patricia/Desktop/GLOBE/BE/src/main/java/dev/patriciafb/spring/student/EnglishLevel.java
 /Users/patricia/Desktop/GLOBE/BE/src/main/java/dev/patriciafb/spring/student/Student.java
 /Users/patricia/Desktop/GLOBE/BE/src/main/java/dev/patriciafb/spring/student/StudentController.java
