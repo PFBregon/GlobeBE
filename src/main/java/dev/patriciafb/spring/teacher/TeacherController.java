@@ -1,5 +1,7 @@
 package dev.patriciafb.spring.teacher;
 
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
@@ -18,13 +20,15 @@ public class TeacherController {
         return service.findAll();
     }
 
-    @PostMapping
-    public Teacher create(@RequestBody Teacher teacher) {
-        return service.save(teacher);
+   @PostMapping
+    public ResponseEntity<Teacher> create(@RequestBody Teacher teacher) {
+        Teacher savedTeacher = service.save(teacher);
+        return ResponseEntity.status(HttpStatus.CREATED).body(savedTeacher); 
     }
 
     @DeleteMapping("/{id}")
-    public void delete(@PathVariable Long id) {
+    public ResponseEntity<Void> delete(@PathVariable Long id) {
         service.deleteById(id);
+        return ResponseEntity.noContent().build(); 
     }
 }
