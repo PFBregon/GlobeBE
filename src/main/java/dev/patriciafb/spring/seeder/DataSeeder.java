@@ -31,24 +31,40 @@ public class DataSeeder {
     }
 
     @PostConstruct
-    public void seedData() {
+public void seedData() {
 
-        Academy a1 = academyRepo.save(new Academy(null, "La Calzada"));
-        Academy a2 = academyRepo.save(new Academy(null, "El Llano"));
+    Academy a1 = academyRepo.save(new Academy(null, "La Calzada"));
+    Academy a2 = academyRepo.save(new Academy(null, "El Llano"));
 
-        Teacher t1 = teacherRepo.save(new Teacher(null, "Nadia"));
-        Teacher t2 = teacherRepo.save(new Teacher(null, "Sabrina"));
-        Teacher t3 = teacherRepo.save(new Teacher(null, "Vanessa"));
-        Teacher t4 = teacherRepo.save(new Teacher(null, "Erik"));
+    Teacher t1 = teacherRepo.save(new Teacher(null, "Nadia"));
+    Teacher t2 = teacherRepo.save(new Teacher(null, "Sabrina"));
+    Teacher t3 = teacherRepo.save(new Teacher(null, "Vanessa"));
+    Teacher t4 = teacherRepo.save(new Teacher(null, "Erik"));
 
-        Group g1 = groupRepo.save(new Group(null, "Group A"));
-        Group g2 = groupRepo.save(new Group(null, "Group B"));
-        Group g3 = groupRepo.save(new Group(null, "Group C"));
-        Group g4 = groupRepo.save(new Group(null, "Group D"));
+    Group g1 = groupRepo.save(new Group(null, "Group A"));
+    Group g2 = groupRepo.save(new Group(null, "Group B"));
+    Group g3 = groupRepo.save(new Group(null, "Group C"));
+    Group g4 = groupRepo.save(new Group(null, "Group D"));
 
-        studentRepo.save(new Student(null, "Patricia", "Fernández Bregón", EnglishLevel.B2, false, a1, t1, g1));
-        studentRepo.save(new Student(null, "Ana", "Martínez", EnglishLevel.C1, false, a2, t2, g2));
-        studentRepo.save(new Student(null, "Mario", "López", EnglishLevel.A2, true, a2, t3, g3));
-        studentRepo.save(new Student(null, "Lucía", "García", EnglishLevel.C2, false, a1, t4, g4));
-    }
+
+    Student s1 = new Student(null, "Patricia", "Fernández Bregón", EnglishLevel.B2, false, a1, t1, g1);
+    s1.setUsername("patricia");
+    s1.setPassword("1234");
+    studentRepo.save(s1);
+
+    Student s2 = new Student(null, "Ana", "Martínez", EnglishLevel.C1, false, a2, t2, g2);
+    s2.setUsername("ana");
+    s2.setPassword("abcd");
+    studentRepo.save(s2);
+
+    Student s3 = new Student(null, "Mario", "López", EnglishLevel.A2, true, a2, t3, g3);
+    s3.setUsername("mario");
+    s3.setPassword("qwerty");
+    studentRepo.save(s3);
+
+    Student s4 = new Student(null, "Lucía", "García", EnglishLevel.C2, false, a1, t4, g4);
+    s4.setUsername("lucia");
+    s4.setPassword("1234");
+    studentRepo.save(s4);
+}
 }

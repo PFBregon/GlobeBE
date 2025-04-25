@@ -12,6 +12,9 @@ public class Student {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    private String username;
+    private String password;
+
     private String name;
     private String surname;
     
@@ -46,6 +49,8 @@ public class Student {
     }
 
     public Long getId() { return id; }
+    public String getUsername() { return username; }
+    public String getPassword() { return password; }
     public String getName() { return name; }
     public String getSurname() { return surname; }
     public EnglishLevel getLevel() { return level; }
@@ -55,6 +60,8 @@ public class Student {
     public Group getGroup() { return group; }
 
     public void setId(Long id) { this.id = id; }
+    public void setUsername(String username) { this.username = username; }
+    public void setPassword(String password) { this.password = password; }
     public void setName(String name) { this.name = name; }
     public void setSurname(String surname) { this.surname = surname; }
     public void setLevel(EnglishLevel level) { this.level = level; }

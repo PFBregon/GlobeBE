@@ -1,14 +1,15 @@
 package dev.patriciafb.spring.student;
 
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
-
 import dev.patriciafb.spring.academy.AcademyRepository;
 import dev.patriciafb.spring.group.GroupRepository;
 import dev.patriciafb.spring.teacher.TeacherRepository;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @RestController
@@ -20,6 +21,7 @@ public class StudentController {
     @Autowired private AcademyRepository academyRepo;
     @Autowired private TeacherRepository teacherRepo;
     @Autowired private GroupRepository groupRepo;
+    @Autowired private StudentRepository studentRepository;
 
     @GetMapping
     public List<StudentDto> getAll() {
@@ -52,6 +54,20 @@ public class StudentController {
     public void delete(@PathVariable Long id) {
         service.deleteStudent(id);
     }
+
+    @PostMapping("/login")
+    public ResponseEntity<?> login(@RequestBody LoginRequest loginRequest) {
+            Optional<Student> student = studentRepository.findByUsernameAndPassword(
+                loginRequest.getUsername(), loginRequest.getPassword()
+            );
+        
+            if (student.isPresent()) {
+                return ResponseEntity.ok(StudentMapper.toDTO(student.get()));
+            } else {
+                return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Credenciales incorrectas");
+            }
+        }
+
 
     private Student dtoToEntity(StudentDto dto) {
         Student student = new Student();
