@@ -5,17 +5,22 @@ import java.util.List;
 
 @Service
 public class NotificationService {
-    private final NotificationRepository repository;
 
-    public NotificationService(NotificationRepository repository) {
-        this.repository = repository;
+    private final NotificationRepository repo;
+
+    public NotificationService(NotificationRepository repo) {
+        this.repo = repo;
     }
 
     public List<Notification> findAll() {
-        return repository.findAll();
+        return repo.findAll();
     }
 
-    public Notification save(Notification message) {
-        return repository.save(message);
+    public Notification save(Notification notification) {
+        return repo.save(notification);
+    }
+
+    public void delete(Long id) {
+        repo.deleteById(id);
     }
 }

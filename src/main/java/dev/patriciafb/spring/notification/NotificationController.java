@@ -1,11 +1,10 @@
 package dev.patriciafb.spring.notification;
 
-import dev.patriciafb.spring.student.StudentRepository;
-import dev.patriciafb.spring.student.Student;
-
 import org.springframework.web.bind.annotation.*;
+import dev.patriciafb.spring.student.Student;
+import dev.patriciafb.spring.student.StudentRepository;
+
 import java.util.List;
-import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/api/notifications")
@@ -21,19 +20,22 @@ public class NotificationController {
     }
 
     @GetMapping
-    public List<NotificationDTO> getAll() {
-        return service.findAll().stream().map(this::toDTO).collect(Collectors.toList());
+    public List<Notification> getAll() {
+        return service.findAll();
     }
 
     @PostMapping
-    public NotificationDTO create(@RequestBody NotificationDTO dto) {
-        Student recipient = studentRepo.findById(dto.getRecipientId()).orElse(null);
-        if (recipient == null) {
-            throw new RuntimeException("El estudiante no existe");
-        }
-        
+    public NotificationDTO createNotification(@RequestBody NotificationDTO dto) {
+        Student recipient = studentRepo.findById(dto.getRecipientId())
+            .orElseThrow(() -> new RuntimeException("El estudiante no existe"));
+
         Notification notification = new Notification(dto.getTitle(), dto.getContent(), recipient);
         return toDTO(service.save(notification));
+    }
+
+    @DeleteMapping("/{id}")
+    public void delete(@PathVariable Long id) {
+        service.delete(id);
     }
 
     private NotificationDTO toDTO(Notification notification) {

@@ -6,17 +6,17 @@ import java.time.LocalDateTime;
 
 @Entity
 public class Notification {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String title;
-    private String content;
-
-    private LocalDateTime sentAt;
-
+    private String title;  
+    private String content; 
+    private LocalDateTime sentAt; 
+    
     @ManyToOne
-    private Student recipient;
+    private Student recipient; 
 
     public Notification() {
         this.sentAt = LocalDateTime.now();
