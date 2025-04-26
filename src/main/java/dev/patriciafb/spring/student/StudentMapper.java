@@ -8,12 +8,24 @@ public class StudentMapper {
         dto.setSurname(student.getSurname());
         dto.setUsername(student.getUsername());
         dto.setPassword(student.getPassword());
-        dto.setLevel(student.getLevel().name());
+        dto.setLevel(student.getLevel() != null ? student.getLevel().name() : null);
         dto.setHasAttendanceIssues(student.isHasAttendanceIssues());
-        dto.setAcademyId(student.getAcademy() != null ? student.getAcademy().getId() : null);
-        dto.setTeacherId(student.getTeacher() != null ? student.getTeacher().getId() : null);
-        dto.setGroupId(student.getGroup() != null ? student.getGroup().getId() : null);
+
+        if (student.getAcademy() != null) {
+            dto.setAcademyId(student.getAcademy().getId());
+            dto.setAcademyName(student.getAcademy().getName());
+        }
+
+        if (student.getTeacher() != null) {
+            dto.setTeacherId(student.getTeacher().getId());
+            dto.setTeacherName(student.getTeacher().getName());
+        }
+
+        if (student.getGroup() != null) {
+            dto.setGroupId(student.getGroup().getId());
+            dto.setGroupName(student.getGroup().getName());
+        }
+
         return dto;
     }
 }
-

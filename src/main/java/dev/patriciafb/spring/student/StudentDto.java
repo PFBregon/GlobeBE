@@ -11,13 +11,16 @@ public class StudentDto {
     private boolean hasAttendanceIssues;
 
     private Long academyId;
+    private String academyName;
     private Long teacherId;
+    private String teacherName;
     private Long groupId;
+    private String groupName;
 
     public StudentDto() {}
 
     public StudentDto(Long id, String name, String surname, String username, String password, String level, boolean hasAttendanceIssues,
-    Long academyId, Long teacherId, Long groupId) {
+    Long academyId, String academyName, Long teacherId, String teacherName, Long groupId, String groupName) {
     this.id = id;
     this.name = name;
     this.surname = surname;
@@ -26,8 +29,11 @@ public class StudentDto {
     this.level = level;
     this.hasAttendanceIssues = hasAttendanceIssues;
     this.academyId = academyId;
+    this.academyName = academyName;
     this.teacherId = teacherId;
+    this.teacherName = teacherName;
     this.groupId = groupId;
+    this.groupName = groupName;
     }
 
     public Long getId() { return id; }
@@ -38,8 +44,11 @@ public class StudentDto {
     public String getLevel() { return level; }
     public boolean isHasAttendanceIssues() { return hasAttendanceIssues; }
     public Long getAcademyId() { return academyId; }
+    public String getAcademyName() { return academyName; }
     public Long getTeacherId() { return teacherId; }
+    public String getTeacherName() { return teacherName; }
     public Long getGroupId() { return groupId; }
+    public String getGroupName() { return groupName; }
 
 
     public void setId(Long id) { this.id = id; }
@@ -50,7 +59,9 @@ public class StudentDto {
     public void setLevel(String level) { this.level = level; }
     public void setHasAttendanceIssues(boolean hasAttendanceIssues) { this.hasAttendanceIssues = hasAttendanceIssues; }
     public void setAcademyId(Long academyId) { this.academyId = academyId; }
+    public void setAcademyName(String academyName) { this.academyName = academyName; }
     public void setTeacherId(Long teacherId) { this.teacherId = teacherId; }
-    public void setGroupId(Long groupId) { this.groupId = groupId;
-}
+    public void setTeacherName(String teacherName) { this.teacherName = teacherName; }
+    public void setGroupId(Long groupId) { this.groupId = groupId; }
+    public void setGroupName(String groupName) { this.groupName = groupName; }
 }
