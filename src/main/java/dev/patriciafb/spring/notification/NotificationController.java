@@ -19,10 +19,14 @@ public class NotificationController {
         this.studentRepo = studentRepo;
     }
 
-    @GetMapping
-    public List<Notification> getAll() {
-        return service.findAll();
-    }
+    @GetMapping("/student/{studentId}")
+    public List<NotificationDTO> getNotificationsByStudent(@PathVariable Long studentId) {
+    List<Notification> notifications = service.findByRecipientId(studentId);
+    return notifications.stream()
+            .map(this::toDTO)
+            .toList();
+}
+
 
     @PostMapping
     public NotificationDTO createNotification(@RequestBody NotificationDTO dto) {

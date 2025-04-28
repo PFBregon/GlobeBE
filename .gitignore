@@ -1,0 +1,47 @@
+# Java
+*.class
+*.jar
+*.war
+*.ear
+
+# Maven
+/target/
+!.mvn/wrapper/maven-wrapper.jar
+.mvn/timing.properties
+
+# IDEs
+/.idea/
+/*.iml
+*.log
+*.ipr
+*.iws
+.DS_Store
+*.swp
+
+# Eclipse
+.settings/
+.project
+.classpath
+
+# VSCode
+.vscode/
+
+# OS
+Thumbs.db
+ehthumbs.db
+*.DS_Store
+
+# H2 Database temp files
+*.mv.db
+*.h2.db
+
+# Docker
+docker-compose.override.yml
+
+# Node (por si luego metes front)
+node_modules/
+dist/
+build/
+
+# Spring Boot Devtools
+.spring-boot-devtools.properties

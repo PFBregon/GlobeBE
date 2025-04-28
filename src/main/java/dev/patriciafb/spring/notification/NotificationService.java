@@ -6,21 +6,25 @@ import java.util.List;
 @Service
 public class NotificationService {
 
-    private final NotificationRepository repo;
+    private final NotificationRepository repository;
 
-    public NotificationService(NotificationRepository repo) {
-        this.repo = repo;
+    public NotificationService(NotificationRepository repository) {
+        this.repository = repository;
     }
 
     public List<Notification> findAll() {
-        return repo.findAll();
+        return repository.findAll();
+    }
+
+    public List<Notification> findByRecipientId(Long studentId) {
+        return repository.findByRecipientId(studentId);
     }
 
     public Notification save(Notification notification) {
-        return repo.save(notification);
+        return repository.save(notification);
     }
 
     public void delete(Long id) {
-        repo.deleteById(id);
+        repository.deleteById(id);
     }
 }
