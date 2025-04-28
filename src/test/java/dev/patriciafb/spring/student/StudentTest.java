@@ -3,135 +3,114 @@ package dev.patriciafb.spring.student;
 import dev.patriciafb.spring.academy.Academy;
 import dev.patriciafb.spring.teacher.Teacher;
 import dev.patriciafb.spring.group.Group;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-
 import static org.junit.jupiter.api.Assertions.*;
 
-public class StudentTest {
+class StudentTest {
 
-    @Test
-    void testGetAcademy() {
-        Academy academy = new Academy();
-        Student student = new Student();
-        student.setAcademy(academy);
-        assertEquals(academy, student.getAcademy());
-    }
+    private Student student;
+    private Academy academy;
+    private Teacher teacher;
+    private Group group;
 
-    @Test
-    void testGetGroup() {
-        Group group = new Group();
-        Student student = new Student();
-        student.setGroup(group);
-        assertEquals(group, student.getGroup());
+    @BeforeEach
+    void setUp() {
+        academy = new Academy();
+        academy.setId(1L);
+        academy.setName("La Calzada");
+
+        teacher = new Teacher();
+        teacher.setId(1L);
+        teacher.setName("Mr. Smith");
+
+        group = new Group();
+        group.setId(1L);
+        group.setName("Group A");
+
+        student = new Student(1L, "John", "Doe", EnglishLevel.B1, false, academy, teacher, group);
     }
 
     @Test
     void testGetId() {
-        Long id = 1L;
-        Student student = new Student();
-        student.setId(id);
-        assertEquals(id, student.getId());
-    }
-
-    @Test
-    void testGetLevel() {
-        EnglishLevel level = EnglishLevel.C1;
-        Student student = new Student();
-        student.setLevel(level);
-        assertEquals(level, student.getLevel());
+        assertEquals(1L, student.getId());
     }
 
     @Test
     void testGetName() {
-        String name = "Lucia";
-        Student student = new Student();
-        student.setName(name);
-        assertEquals(name, student.getName());
+        assertEquals("John", student.getName());
     }
 
     @Test
     void testGetSurname() {
-        String surname = "Gonzalez";
-        Student student = new Student();
-        student.setSurname(surname);
-        assertEquals(surname, student.getSurname());
+        assertEquals("Doe", student.getSurname());
+    }
+
+    @Test
+    void testGetLevel() {
+        assertEquals(EnglishLevel.B1, student.getLevel());
+    }
+
+    @Test
+    void testGetAcademy() {
+        assertEquals(academy, student.getAcademy());
     }
 
     @Test
     void testGetTeacher() {
-        Teacher teacher = new Teacher();
-        Student student = new Student();
-        student.setTeacher(teacher);
         assertEquals(teacher, student.getTeacher());
     }
 
     @Test
-    void testIsHasAttendanceIssues() {
-        Student student = new Student();
+    void testGetGroup() {
+        assertEquals(group, student.getGroup());
+    }
+
+    @Test
+    void testSetName() {
+        student.setName("Jane");
+        assertEquals("Jane", student.getName());
+    }
+
+    @Test
+    void testSetSurname() {
+        student.setSurname("Smith");
+        assertEquals("Smith", student.getSurname());
+    }
+
+    @Test
+    void testSetLevel() {
+        student.setLevel(EnglishLevel.A2);
+        assertEquals(EnglishLevel.A2, student.getLevel());
+    }
+
+    @Test
+    void testSetHasAttendanceIssues() {
         student.setHasAttendanceIssues(true);
         assertTrue(student.isHasAttendanceIssues());
     }
 
     @Test
     void testSetAcademy() {
-        Academy academy = new Academy();
-        Student student = new Student();
-        student.setAcademy(academy);
-        assertEquals(academy, student.getAcademy());
-    }
-
-    @Test
-    void testSetGroup() {
-        Group group = new Group();
-        Student student = new Student();
-        student.setGroup(group);
-        assertEquals(group, student.getGroup());
-    }
-
-    @Test
-    void testSetHasAttendanceIssues() {
-        Student student = new Student();
-        student.setHasAttendanceIssues(false);
-        assertFalse(student.isHasAttendanceIssues());
-    }
-
-    @Test
-    void testSetId() {
-        Long id = 2L;
-        Student student = new Student();
-        student.setId(id);
-        assertEquals(id, student.getId());
-    }
-
-    @Test
-    void testSetLevel() {
-        EnglishLevel level = EnglishLevel.A2;
-        Student student = new Student();
-        student.setLevel(level);
-        assertEquals(level, student.getLevel());
-    }
-
-    @Test
-    void testSetName() {
-        String name = "Jane";
-        Student student = new Student();
-        student.setName(name);
-        assertEquals(name, student.getName());
-    }
-
-    @Test
-    void testSetSurname() {
-        String surname = "Smith";
-        Student student = new Student();
-        student.setSurname(surname);
-        assertEquals(surname, student.getSurname());
+        Academy newAcademy = new Academy();
+        newAcademy.setId(2L);
+        student.setAcademy(newAcademy);
+        assertEquals(newAcademy, student.getAcademy());
     }
 
     @Test
     void testSetTeacher() {
-        Teacher teacher = new Teacher();
-        Student student = new Student();
-        student.setTeacher(teacher);
-        assertEquals(teacher, student.getTeacher());
+        Teacher newTeacher = new Teacher();
+        newTeacher.setId(2L);
+        student.setTeacher(newTeacher);
+        assertEquals(newTeacher, student.getTeacher());
+    }
+
+    @Test
+    void testSetGroup() {
+        Group newGroup = new Group();
+        newGroup.setId(2L);
+        student.setGroup(newGroup);
+        assertEquals(newGroup, student.getGroup());
     }
 }
